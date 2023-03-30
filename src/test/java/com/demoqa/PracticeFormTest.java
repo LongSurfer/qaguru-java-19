@@ -1,9 +1,7 @@
 package com.demoqa;
 
 
-import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import java.io.File;
 
@@ -18,6 +16,9 @@ public class PracticeFormTest extends TestBase {
     @Test
     void successfulFillFormTest() {
         open("/automation-practice-form");
+
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Evans");
