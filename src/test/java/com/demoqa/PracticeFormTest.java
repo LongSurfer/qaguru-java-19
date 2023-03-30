@@ -1,6 +1,7 @@
 package com.demoqa;
 
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -23,15 +24,13 @@ public class PracticeFormTest extends TestBase {
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Evans");
         $("#userEmail").setValue("test@test.qa");
-        $x("//label[text()='Male']").click();
+        $("#gender-radio-1").parent().click();
         $("#userNumber").setValue("0123456789");
 
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-dropdown-container").click();
-        $x("//option[text()='November']").click();
-        $(".react-datepicker__year-select").click();
-        $x("//option[text()='1987']").click();
-        $(".react-datepicker__day.react-datepicker__day--025").click();
+        $(".react-datepicker__month-select").$(byText("November")).click();
+        $(".react-datepicker__year-select").$(byText("1990")).click();
+        $(".react-datepicker__day--025").click();
 
         $("#subjectsInput").setValue("Eng");
         $("#react-select-2-option-0").click(); //кликаем на результат
@@ -40,19 +39,18 @@ public class PracticeFormTest extends TestBase {
         $(byText("Sports")).click();
         $(byText("Music")).click();
 
-        $("#uploadPicture").uploadFile(new File("src/test/resources/salt-bae-2.jpg"));
+        $("#uploadPicture").uploadFromClasspath("salt-bae-2.jpg");
         $("#currentAddress").setValue("Kuta, Bali");
         $("#state").click();
         $("#react-select-3-option-1").click(); //Uttar Pradesh
         $("#city").click();
-        $x("//div[text()='Merrut']").click(); //тот случай, когда XPath читабельнее
+        $("#react-select-4-option-2").click(); //Merrut
 
         $("#submit").click();
 
-        //А как правильно юзать команду assert в джаве?
         $(".table").shouldHave(
                 text("Alex"), text("Evans"), text("test@test.qa"), text("Male"), text("0123456789"),
-                text("25 November,1987"), text("English, Computer Science"), text("Sports, Music"),
+                text("25 November,1990"), text("English, Computer Science"), text("Sports, Music"),
                 text("salt-bae-2.jpg"), text("Kuta, Bali"), text("Uttar Pradesh Merrut"));
 
     }
