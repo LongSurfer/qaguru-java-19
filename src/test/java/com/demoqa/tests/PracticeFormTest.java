@@ -1,7 +1,8 @@
-package com.demoqa;
+package com.demoqa.tests;
 
 
 import com.codeborne.selenide.Configuration;
+import com.demoqa.TestBase;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
