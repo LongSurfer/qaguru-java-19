@@ -24,6 +24,8 @@ public class RegistrationPage {
                     hobbies = $("#hobbiesWrapper"),
                     uploadPicture = $("#uploadPicture"),
                     currentAddressInput = $("#currentAddress"),
+                    selectState = $("#state"),
+                    selectCity = $("#city"),
                     submitButton = $("#submit");
 
 
@@ -96,9 +98,9 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setStateAndCity(String state, String city) {
-        $("#state").click();
+        selectState.click();
         $(byText(state)).click();
-        $("#city").click();
+        selectCity.click();
         $(byText(city)).click();
 
         return this;
