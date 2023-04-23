@@ -9,4 +9,5 @@ public class CalendarComponent {
         $(".react-datepicker__year-select").$(byText(year)).click();
         $(".react-datepicker__day--0" + day).click();
     }
+
 }

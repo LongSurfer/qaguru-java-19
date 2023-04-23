@@ -13,11 +13,16 @@ public class RegistrationPage {
 
     // Selenide elements / locators / etc
     SelenideElement firstNameInput = $("#firstName"),
-    lastNameInput = $("#lastName"),
-    userEmailInput = $("#userEmail"),
-    gender = $("#genterWrapper"),
-    userNumberInput = $("#userNumber"),
-    dateOfBirthInput = $("#dateOfBirthInput");
+                    lastNameInput = $("#lastName"),
+                    userEmailInput = $("#userEmail"),
+                    gender = $("#genterWrapper"),
+                    userNumberInput = $("#userNumber"),
+                    dateOfBirthInput = $("#dateOfBirthInput"),
+                    subjectInput = $("#subjectsInput"),
+                    hobbies = $("#hobbiesWrapper"),
+                    uploadPicture = $("#uploadPicture"),
+                    currentAddressInput = $("#currentAddress"),
+                    submitButton = $("#submit");
 
 
     // Actions
@@ -59,9 +64,47 @@ public class RegistrationPage {
         return this;
     }
 
-    public void setBirthDate(String day, String month, String year) {
+    public RegistrationPage setBirthDate(String day, String month, String year) {
         dateOfBirthInput.click();
         calendarComponent.setDate(day, month, year);
 
+        return this;
+    }
+    public RegistrationPage setSubject(String value) {
+        subjectInput.setValue(value).pressEnter();
+
+        return this;
+    }
+
+    public RegistrationPage setHobby(String value) {
+        hobbies.$(byText(value)).click();
+
+        return this;
+    }
+    public RegistrationPage selectPicture(String value) {
+        uploadPicture.uploadFromClasspath(value);
+
+        return this;
+    }
+
+    public RegistrationPage setCurrentAddress(String value) {
+        currentAddressInput.setValue(value);
+
+        return this;
+    }
+
+    public RegistrationPage setStateAndCity(String state, String city) {
+        $("#state").click();
+        $(byText(state)).click();
+        $("#city").click();
+        $(byText(city)).click();
+
+        return this;
+    }
+
+    public RegistrationPage clickOnSubmitButton() {
+        submitButton.click();
+
+        return this;
     }
 }

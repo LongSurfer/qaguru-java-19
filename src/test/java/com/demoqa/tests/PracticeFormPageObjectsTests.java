@@ -17,23 +17,15 @@ public class PracticeFormPageObjectsTests extends TestBase{
                         .setUserEmail("test@test.qa")
                         .setGender("Male")
                         .setUserNumber("0123456789")
-                        .setBirthDate("25", "November", "1990");
-
-        $("#subjectsInput").setValue("Eng");
-        $("#react-select-2-option-0").click(); //кликаем на результат
-        $("#subjectsInput").setValue("Comp");
-        $("#subjectsInput").pressEnter(); // выбираем результат с помощью ентера
-        $(byText("Sports")).click();
-        $(byText("Music")).click();
-
-        $("#uploadPicture").uploadFromClasspath("salt-bae-2.jpg");
-        $("#currentAddress").setValue("Kuta, Bali");
-        $("#state").click();
-        $("#react-select-3-option-1").click(); //Uttar Pradesh
-        $("#city").click();
-        $("#react-select-4-option-2").click(); //Merrut
-
-        $("#submit").click();
+                        .setBirthDate("25", "November", "1990")
+                        .setSubject("English")
+                        .setSubject("Computer Science")
+                        .setHobby("Sports")
+                        .setHobby("Music")
+                        .selectPicture("salt-bae-2.jpg")
+                        .setCurrentAddress("Kuta, Bali")
+                        .setStateAndCity("Uttar Pradesh", "Merrut")
+                        .clickOnSubmitButton();
 
         $(".table").shouldHave(
                 text("Alex"), text("Evans"), text("test@test.qa"), text("Male"), text("0123456789"),
