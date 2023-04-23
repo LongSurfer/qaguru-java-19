@@ -2,10 +2,6 @@ package com.demoqa.tests;
 
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
 public class PracticeFormPageObjectsTests extends TestBase{
 
     @Test
@@ -27,10 +23,17 @@ public class PracticeFormPageObjectsTests extends TestBase{
                         .setStateAndCity("Uttar Pradesh", "Merrut")
                         .clickOnSubmitButton();
 
-        $(".table").shouldHave(
-                text("Alex"), text("Evans"), text("test@test.qa"), text("Male"), text("0123456789"),
-                text("25 November,1990"), text("English, Computer Science"), text("Sports, Music"),
-                text("salt-bae-2.jpg"), text("Kuta, Bali"), text("Uttar Pradesh Merrut"));
+        registrationPage.verifyRegistrationResultModalAppears()
+                .verifyResult("Student Name", "Alex Evans")
+                .verifyResult("Student Email", "test@test.qa")
+                .verifyResult("Gender", "Male")
+                .verifyResult("Mobile", "0123456789")
+                .verifyResult("Date of Birth", "25 November,1990")
+                .verifyResult("Subjects", "English, Computer Science")
+                .verifyResult("Hobbies", "Sports, Music")
+                .verifyResult("Picture", "salt-bae-2.jpg")
+                .verifyResult("Address", "Kuta, Bali")
+                .verifyResult("State and City", "Uttar Pradesh Merrut");
 
     }
 }

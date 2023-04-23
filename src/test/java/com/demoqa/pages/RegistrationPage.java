@@ -2,6 +2,7 @@ package com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.components.CalendarComponent;
+import com.demoqa.pages.components.ResultsModal;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class RegistrationPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
+    ResultsModal resultsModal = new ResultsModal();
 
     // Selenide elements / locators / etc
     SelenideElement firstNameInput = $("#firstName"),
@@ -104,6 +106,17 @@ public class RegistrationPage {
 
     public RegistrationPage clickOnSubmitButton() {
         submitButton.click();
+
+        return this;
+    }
+    public RegistrationPage verifyRegistrationResultModalAppears() {
+        resultsModal.verifyModalAppears();
+
+        return this;
+    }
+
+    public RegistrationPage verifyResult(String key, String value) {
+        resultsModal.verifyResult(key, value);
 
         return this;
     }
