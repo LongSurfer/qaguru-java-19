@@ -1,11 +1,13 @@
 package com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.demoqa.data.viewModel.RegistrationPageViewModel;
 import com.demoqa.pages.components.CalendarComponent;
 import com.demoqa.pages.components.ResultsModal;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
@@ -13,7 +15,19 @@ public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     ResultsModal resultsModal = new ResultsModal();
 
-    // Selenide elements / locators / etc
+    // Submit form fields / Selenide elements / locators / etc
+
+    String nameField = "Student Name",
+            emailField = "Student Email",
+            genderField = "Gender",
+            mobileField = "Mobile",
+            dateBirthField = "Date of Birth",
+            subjectsField = "Subjects",
+            hobbiesField = "Hobbies",
+            pictureField = "Picture",
+            addressField = "Address",
+            stateCityField = "State and City";
+
     SelenideElement firstNameInput = $("#firstName"),
                     lastNameInput = $("#lastName"),
                     userEmailInput = $("#userEmail"),
@@ -121,8 +135,17 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage verifyResult(String key, String value) {
-        resultsModal.verifyResult(key, value);
+    public RegistrationPage verifyResult(RegistrationPageViewModel value) {
+        resultsModal.verifyResult(nameField, value.nameValue + " " + value.lastNameValue)
+                .verifyResult(emailField, value.emailValue)
+                .verifyResult(genderField, value.genderValue)
+                .verifyResult(mobileField, value.numberValue)
+                .verifyResult(dateBirthField, value.dayValue + " " + value.monthValue + "," + value.yearValue)
+                .verifyResult(subjectsField, value.subjectValue)
+                .verifyResult(hobbiesField, value.hobbyValue)
+                .verifyResult(pictureField, value.pathValue)
+                .verifyResult(addressField, value.addressValue)
+                .verifyResult(stateCityField, value.stateValue + " " + value.cityValue);
 
         return this;
     }
